@@ -37,12 +37,26 @@ class _HomeViewState extends ConsumerState<_HomeView> {
   @override
   Widget build(BuildContext context) {
     // Usamos watch para estar pendientes de la data actualizada
-    // final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
+    final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
     final slideShowMovies = ref.watch(movieSlideShowProvider);
     return Column(
       children: [
         const CustomAppbar(),
         MoviesSlideshow(movies: slideShowMovies),
+        MovieHorizontalListview(
+          movies: nowPlayingMovies,
+          title: 'En cines',
+          subtitle: 'Lunes 20',
+          loadNextPage:
+              ref.read(nowPlayingMoviesProvider.notifier).loadNextPage,
+        ),
+        MovieHorizontalListview(
+          movies: nowPlayingMovies,
+          title: 'En cines',
+          subtitle: 'Lunes 20',
+          loadNextPage:
+              ref.read(nowPlayingMoviesProvider.notifier).loadNextPage,
+        ),
       ],
     );
   }
