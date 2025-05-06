@@ -8,6 +8,28 @@ final nowPlayingMoviesProvider =
       return MoviesNotifier(fetchMoreMovies: fetchMoreMovies);
     });
 
+// Se genera un nuevo state provider apuntando a otro repositorio
+// para generar un nuevo estado con otras peliculas.
+final popularMoviesProvider =
+    StateNotifierProvider<MoviesNotifier, List<Movie>>((ref) {
+      final fetchMoreMovies = ref.watch(movieRepositoryProvider).getPopular;
+      return MoviesNotifier(fetchMoreMovies: fetchMoreMovies);
+    });
+
+final upcomingProvider = StateNotifierProvider<MoviesNotifier, List<Movie>>((
+  ref,
+) {
+  final fetchMoreMovies = ref.watch(movieRepositoryProvider).getUpcoming;
+  return MoviesNotifier(fetchMoreMovies: fetchMoreMovies);
+});
+
+final topRatedProvider = StateNotifierProvider<MoviesNotifier, List<Movie>>((
+  ref,
+) {
+  final fetchMoreMovies = ref.watch(movieRepositoryProvider).getTopRated;
+  return MoviesNotifier(fetchMoreMovies: fetchMoreMovies);
+});
+
 typedef MovieCallback = Future<List<Movie>> Function({int page});
 
 class MoviesNotifier extends StateNotifier<List<Movie>> {
