@@ -14,6 +14,7 @@ class CustomBottomNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       elevation: 0,
+      currentIndex: currentIndex,
       onTap: (value) {
         onItemTapped(context, value);
       },
